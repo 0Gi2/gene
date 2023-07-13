@@ -1,1 +1,41 @@
-# gene
+def translate_codon(codon):
+    codon_table = {
+        'UUU': 'F', 'UUC': 'F', 'UUA': 'L', 'UUG': 'L',
+        'CUU': 'L', 'CUC': 'L', 'CUA': 'L', 'CUG': 'L',
+        'AUU': 'I', 'AUC': 'I', 'AUA': 'I', 'AUG': 'M',
+        'GUU': 'V', 'GUC': 'V', 'GUA': 'V', 'GUG': 'V',
+        'UCU': 'S', 'UCC': 'S', 'UCA': 'S', 'UCG': 'S',
+        'CCU': 'P', 'CCC': 'P', 'CCA': 'P', 'CCG': 'P',
+        'ACU': 'T', 'ACC': 'T', 'ACA': 'T', 'ACG': 'T',
+        'GCU': 'A', 'GCC': 'A', 'GCA': 'A', 'GCG': 'A',
+        'UAU': 'Y', 'UAC': 'Y', 'UAA': '*', 'UAG': '*',
+        'CAU': 'H', 'CAC': 'H', 'CAA': 'Q', 'CAG': 'Q',
+        'AAU': 'N', 'AAC': 'N', 'AAA': 'K', 'AAG': 'K',
+        'GAU': 'D', 'GAC': 'D', 'GAA': 'E', 'GAG': 'E',
+        'UGU': 'C', 'UGC': 'C', 'UGA': '*', 'UGG': 'W',
+        'CGU': 'R', 'CGC': 'R', 'CGA': 'R', 'CGG': 'R',
+        'AGU': 'S', 'AGC': 'S', 'AGA': 'R', 'AGG': 'R',
+        'GGU': 'G', 'GGC': 'G', 'GGA': 'G', 'GGG': 'G'
+    }
+
+    if codon in codon_table:
+        return codon_table[codon]
+    else:
+        return 'X'  # unknown codon
+
+# 코돈 입력
+codon = input("코돈을 입력하세요: ")
+
+# 입력된 코돈을 대문자로 변환
+codon = codon.upper()
+
+# 아미노산 번역
+amino_acids = ''
+for i in range(0, len(codon), 3):
+    codon_fragment = codon[i:i+3]
+    amino_acid = translate_codon(codon_fragment)
+    amino_acids += amino_acid
+
+# 결과 출력
+print(f"입력한 코돈: {codon}")
+print(f"해당하는 아미노산: {amino_acids}")
